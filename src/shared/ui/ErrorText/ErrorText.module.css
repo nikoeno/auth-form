@@ -1,0 +1,7 @@
+.text {
+  margin: 0;
+  padding: 0 8px;
+  color: var(--colorError);
+  font-size: 14px;
+  text-align: center;
+}

@@ -1,0 +1,17 @@
+.link {
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  color: var(--colorPrimary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--colorPrimaryHover);
+}
+
+.link:focus {
+  color: var(--colorPrimaryHover);
+}

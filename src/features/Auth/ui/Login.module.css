@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailInput {
+  margin-bottom: 16px;
+}
+
+.submitButton {
+  margin-top: 16px;
+}
+
+.forgotPassword {
+  margin: 16px 0;
+  text-align: end;
+  font-size: 14px;
+}
+
+.agreement {
+  margin-top: 16px;
+}
+
+.footer {
+  font-size: 14px;
+  color: var(--colorGreyMedium);
+  text-align: center;
+}
+
+.footerText {
+  margin-right: 4px;
+}
+
+.title {
+  margin-top: 0;
+}
+
+.errorText {
+  margin-top: 16px;
+}

@@ -1,0 +1,74 @@
+.input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.checkbox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 1px solid var(--colorGrey);
+  border-color: 1px;
+  transition: background-color 0.2s;
+  background: #ffffff;
+}
+
+.checkboxChecked {
+  border: 1px solid var(--colorPrimary);
+  background-color: var(--colorPrimary);
+}
+
+.checkboxWithMargin {
+  margin-right: 8px;
+}
+
+.icon {
+  fill: #ffffff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.checkboxWithText {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox::after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--colorPrimary);
+  opacity: 0.3;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  transition: 0.2s;
+  z-index: -1;
+}
+
+.input:focus-visible ~ .checkboxWithText .checkbox::after {
+  width: 36px;
+  height: 36px;
+}
