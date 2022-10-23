@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { UnhandledError, UserDoesNotExistError } from "src/shared/errors";
 import { Button } from "src/shared/ui/Button";
 import { ErrorText } from "src/shared/ui/ErrorText";
@@ -10,11 +10,7 @@ import { useRestorePassword } from "../model/useRestorePassword";
 
 import styles from "./RestorePassword.module.css";
 
-type Props = {
-  onFormChange: (newForm: "logIn") => void;
-};
-
-export const RestorePassword = ({ onFormChange }: Props) => {
+export const RestorePassword = () => {
   const [emailValue, setEmailValue] = useState("");
   const [error, setError] = useState("");
   const { restorePassword, isLoading } = useRestorePassword();
@@ -49,14 +45,14 @@ export const RestorePassword = ({ onFormChange }: Props) => {
           isError={Boolean(error)}
           onFocus={() => setError("")}
         />
-        <ErrorText text={error} className={styles.errorText}/>
+        <ErrorText text={error} className={styles.errorText} />
         <Button className={styles.submitButton} type="submit">
           Send email
         </Button>
       </form>
       <div className={styles.footer}>
         <span className={styles.footerText}>Return to</span>
-        <Link onClick={() => onFormChange("logIn")}>log in</Link>
+        <Link to="/?form=log-in">log in</Link>
       </div>
     </div>
   );

@@ -10,11 +10,7 @@ import { useSignUp } from "../model/useRegister";
 
 import styles from "./SignUp.module.css";
 
-type SignUpProps = {
-  onFormChange: (newForm: "logIn") => void;
-};
-
-export const SignUp = ({ onFormChange }: SignUpProps) => {
+export const SignUp = () => {
   const [isAgreementChecked, setIsAgreementChecked] = useState(true);
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -115,7 +111,7 @@ export const SignUp = ({ onFormChange }: SignUpProps) => {
       </form>
       <div className={styles.footer}>
         <span className={styles.footerText}>Already registered?</span>
-        <Link onClick={() => onFormChange("logIn")}>Log in</Link>
+        <Link to="/?form=log-in">Log in</Link>
       </div>
     </div>
   );
