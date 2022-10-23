@@ -14,11 +14,7 @@ import { useLogin } from "../model/useLogin";
 
 import styles from "./Login.module.css";
 
-type LogInProps = {
-  onFormChange: (newForm: "signUp" | "restorePassword") => void;
-};
-
-export const LogIn = ({ onFormChange }: LogInProps) => {
+export const LogIn = () => {
   const [isAgreementChecked, setIsAgreementChecked] = useState(true);
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
@@ -83,13 +79,11 @@ export const LogIn = ({ onFormChange }: LogInProps) => {
         </Button>
       </form>
       <div className={styles.forgotPassword}>
-        <Link onClick={() => onFormChange("restorePassword")}>
-          Forgot password?
-        </Link>
+        <Link to="/?form=restore-password">Forgot password?</Link>
       </div>
       <div className={styles.footer}>
         <span className={styles.footerText}>Have no account yet?</span>
-        <Link onClick={() => onFormChange("signUp")}>Sign up</Link>
+        <Link to="/?form=sign-up">Sign up</Link>
       </div>
     </div>
   );

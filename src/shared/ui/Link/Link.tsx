@@ -1,10 +1,10 @@
 import {
   ButtonHTMLAttributes,
-  HTMLAttributes,
   ReactNode,
   SyntheticEvent,
 } from "react";
 import cls from "classnames";
+import { Link as RouterLink } from "react-router-dom";
 
 import styles from "./Link.module.css";
 
@@ -14,9 +14,21 @@ type Props = {
   onClick?: (e: SyntheticEvent) => void;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   href?: string;
+  to?: string;
 };
 
-export const Link = ({ type, children, className, onClick, href }: Props) => {
+export const Link = ({
+  type,
+  children,
+  className,
+  onClick,
+  href,
+  to,
+}: Props) => {
+  if (to) {
+    return <RouterLink to={to}>{children}</RouterLink>;
+  }
+
   if (onClick && !href) {
     return (
       <button
@@ -28,6 +40,7 @@ export const Link = ({ type, children, className, onClick, href }: Props) => {
       </button>
     );
   }
+
   return (
     <a
       // I don't know why, but it's not focusing with tab without it (chrome, mac os) :)
