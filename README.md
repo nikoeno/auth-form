@@ -1,6 +1,6 @@
 # auth form
 ## there is no backend, only front.
-## DEMO IS HERE: https://seothp.github.io/auth-form/
+## DEMO IS HERE: [https://seothp.github.io/auth-form/](https://nikoeno.github.io/auth-form/)
 ## Local run:
 - install pnpm: `npx pnpm add -g pnpm`
 - install dependencies: `pnpm install`
