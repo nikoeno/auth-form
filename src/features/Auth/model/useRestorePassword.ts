@@ -7,6 +7,7 @@ export const useRestorePassword = () => {
   const handleRestorePassword = async ({ email }: { email: string }) => {
     setIsLoading(true);
     const result = await restorePassword({ email });
+
     setIsLoading(false);
 
     return result;

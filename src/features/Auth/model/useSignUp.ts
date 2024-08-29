@@ -13,6 +13,7 @@ export const useSignUp = () => {
   }) => {
     setIsLoading(true);
     const result = await signUp({ password, email });
+
     setIsLoading(false);
 
     return result;

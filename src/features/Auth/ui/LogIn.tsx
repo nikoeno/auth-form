@@ -13,17 +13,20 @@ import { Loader } from "src/shared/ui/Loader";
 import { useLogin } from "../model/useLogin";
 
 import styles from "./Login.module.css";
+import { AUTH_FORMS_TYPES } from "./constants";
 
 export const LogIn = () => {
-  const [isAgreementChecked, setIsAgreementChecked] = useState(true);
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [error, setError] = useState("");
+
   const { logIn, isLoading } = useLogin();
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     const res = await logIn({ password: passwordValue, email: emailValue });
+
     if (res instanceof WrongPasswordError) {
       setError("Wrong password");
     } else if (res instanceof UserDoesNotExistError) {
@@ -43,7 +46,7 @@ export const LogIn = () => {
         <Input
           type="email"
           value={emailValue}
-          onChange={(v) => setEmailValue(v)}
+          onChange={setEmailValue}
           placeholder="email"
           name="email"
           focusOnMount={true}
@@ -56,7 +59,7 @@ export const LogIn = () => {
         <Input
           type="password"
           value={passwordValue}
-          onChange={(v) => setPasswordValue(v)}
+          onChange={setPasswordValue}
           placeholder="password"
           name="password"
           required={true}
@@ -64,26 +67,18 @@ export const LogIn = () => {
           onFocus={() => setError("")}
         />
         <ErrorText text={error} className={styles.errorText} />
-        <Checkbox
-          value={isAgreementChecked}
-          onChange={setIsAgreementChecked}
-          text="By clicking log In, I agree to the privacy policy and processing of the personal data."
-          className={styles.agreement}
-        />
-        <Button
-          className={styles.submitButton}
-          type="submit"
-          isDisabled={!isAgreementChecked}
-        >
+        <Button className={styles.submitButton} type="submit">
           Log in
         </Button>
       </form>
       <div className={styles.forgotPassword}>
-        <Link to="/?form=restore-password">Forgot password?</Link>
+        <Link to={`/?form=${AUTH_FORMS_TYPES.restorePassword}`}>
+          Forgot password?
+        </Link>
       </div>
       <div className={styles.footer}>
         <span className={styles.footerText}>Have no account yet?</span>
-        <Link to="/?form=sign-up">Sign up</Link>
+        <Link to={`/?form=${AUTH_FORMS_TYPES.signUp}`}>Sign up</Link>
       </div>
     </div>
   );
