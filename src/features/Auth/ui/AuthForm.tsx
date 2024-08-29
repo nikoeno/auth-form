@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { LogIn } from "./LogIn";
@@ -8,7 +7,7 @@ import { AuthFormTypesValues } from "./constants";
 
 import styles from "./AuthForm.module.css";
 
-const forms: Record<AuthFormTypesValues, () => ReactNode> = {
+const forms: Record<AuthFormTypesValues, () => JSX.Element> = {
   "log-in": LogIn,
   "sign-up": SignUp,
   "restore-password": RestorePassword,
