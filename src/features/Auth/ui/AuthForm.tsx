@@ -1,22 +1,25 @@
+import { ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { LogIn } from "./LogIn";
 import { SignUp } from "./SignUp";
+import { RestorePassword } from "./RestorePassword";
+import { AuthFormTypesValues } from "./constants";
 
 import styles from "./AuthForm.module.css";
-import { RestorePassword } from "./RestorePassword";
 
-type Props = {};
-const forms = {
+const forms: Record<AuthFormTypesValues, () => ReactNode> = {
   "log-in": LogIn,
   "sign-up": SignUp,
   "restore-password": RestorePassword,
 } as const;
 
-type FormKeys = keyof typeof forms;
+type Props = {};
 
 export const AuthForm = ({}: Props) => {
   const [searchParams] = useSearchParams();
-  const currentForm = (searchParams.get("form") as FormKeys) ?? "log-in";
+  const currentForm =
+    (searchParams.get("form") as AuthFormTypesValues) ?? "log-in";
   const Form = forms[currentForm];
 
   return (

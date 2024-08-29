@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { UnhandledError, UserDoesNotExistError } from "src/shared/errors";
 import { Button } from "src/shared/ui/Button";
 import { ErrorText } from "src/shared/ui/ErrorText";
@@ -6,6 +7,7 @@ import { Input } from "src/shared/ui/Input";
 import { Link } from "src/shared/ui/Link";
 import { Loader } from "src/shared/ui/Loader";
 
+import { AUTH_FORMS_TYPES } from "./constants";
 import { useRestorePassword } from "../model/useRestorePassword";
 
 import styles from "./RestorePassword.module.css";
@@ -14,9 +16,12 @@ export const RestorePassword = () => {
   const [emailValue, setEmailValue] = useState("");
   const [error, setError] = useState("");
   const { restorePassword, isLoading } = useRestorePassword();
+
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     const res = await restorePassword({ email: emailValue });
+
     if (res instanceof UserDoesNotExistError) {
       setError("User with this email doesn't exist");
     } else if (res instanceof UnhandledError) {
@@ -35,7 +40,7 @@ export const RestorePassword = () => {
         <Input
           type="email"
           value={emailValue}
-          onChange={(v) => setEmailValue(v)}
+          onChange={setEmailValue}
           placeholder="email"
           name="email"
           focusOnMount={true}
@@ -52,7 +57,7 @@ export const RestorePassword = () => {
       </form>
       <div className={styles.footer}>
         <span className={styles.footerText}>Return to</span>
-        <Link to="/?form=log-in">log in</Link>
+        <Link to={`/?form=${AUTH_FORMS_TYPES.logIn}`}>log in</Link>
       </div>
     </div>
   );
